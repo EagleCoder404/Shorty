@@ -1,4 +1,15 @@
 <?php
+include "operations/redirect.php";
+include "operations/get_original.php";
+
+$code=array_key_first($_GET);
+if($code !== NULL)
+{
+	$code = htmlspecialchars($code);
+	$n = get_url($code);
+	redirect("http://".$n);
+}
+
 session_start();
 if(isset($_SESSION['status']))
 	session_destroy();
@@ -32,39 +43,40 @@ if(isset($_SESSION['status']))
 
 					<div class="form-group">
 					  <label for="email">Email</label>
-					  <input type="text" name="email" id="email" class="form-control" placeholder="Email" aria-describedby="helpId">
+					  <input type="text" name="email" id="email" class="form-control" placeholder="Email" aria-describedby="helpId" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="helpId">
+						<input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="helpId" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Login</button>
 					
 				</form>
-
 			</div>
+
 			<div class='col-sm-6'>
 				<h1 class="display-1">Hello There!</h1>
 				<form action="operations/register.php" method="post">
 					<div class="form-group">
 					  <label for="firstname">First Name</label>
-					  <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" aria-describedby="helpId">
+					  <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" aria-describedby="helpId" required>
 					</div>
 					<div class="form-group">
 					  <label for="lastname">Last Name</label>
-					  <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" aria-describedby="helpId">
+					  <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" aria-describedby="helpId" required>
 					</div>
 					<div class="form-group">
 					  <label for="email">E-Mail</label>
-					  <input type="email" name="email" id="email" class="form-control" placeholder="E-Mail" aria-describedby="helpId">
+					  <input type="email" name="email" id="email" class="form-control" placeholder="E-Mail" aria-describedby="helpId" required>
 					</div>
 					<div class="form-group">
 					  <label for="password">Password</label>
-					  <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="">
+					  <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Register</button>
 				</form>
 			</div>
+
 		</div>
 	</div>
 	<script>

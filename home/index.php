@@ -1,5 +1,19 @@
 <?php
 include "../operations/auth_redirections.php";
+$email = $_SESSION['email'];
+
+$con = pg_connect("host=localhost dbname=url_shortner user=url_shortner password=root");
+
+$links = [];
+$rows = pg_query($con,"select * from url_map where owner_id='$email';");
+$size=0;
+
+while($row = pg_fetch_assoc($rows))
+{
+	array_push($links,$row);
+	$size+=1;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +34,55 @@ include "../operations/auth_redirections.php";
 		}
 	</style>
 </head>
-<body>
-    <?php include "../header.php";?>
+<body class=''>
+	<?php include "../header.php";?>
+
+	<div class="container mt-3 p-sm-3">
+		<div class="container-fluid">
+			<button class="btn btn-outline-primary rounded-0 btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+				Make A URL
+			</button>
+			<div class="collapse border border-primary border-top-0" id="collapseExample">
+				
+				<form action="../operations/create_short_url.php" method='post' class='p-3'>
+					<div class="row">
+	
+						<div class="col-lg-10">
+							<div class="form-group">
+							  <input type="text" class="form-control" name="original_url" id="original_url" aria-describedby="helpId" placeholder="Your URL">
+							</div>
+						</div>
+	
+						<div class="col-lg-2">
+							<button class='btn btn-outline-success'>Submit</button>
+						</div>
+		
+					</div>
+				</form>
+	
+			</div>
+		</div>
+		<div class="mt-3 container-fluid">
+			<table class="table">
+				<thead class='thead-dark'>
+					<tr>
+						<th>Shorty URL</th>
+						<th>Original URL</th>
+						<th>Open Count</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php for ($i=0; $i < $size ; $i++) { ?>
+					<tr>
+						<td scope="row"><?= $links[$i]['short_url'] ?></td>
+						<td><?= $links[$i]['original_url'] ?></td>
+						<td><?= $links[$i]['use_count'] ?></td>
+					</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
 </body>
 </html>
