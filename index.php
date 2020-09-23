@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['status']))
+	session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,32 +23,13 @@
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Shorty</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
-	  
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  <!-- <ul class="navbar-nav mr-auto">
-
-			<li class="nav-item active">
-			  <a class="nav-link" href="#"><button class="btn btn-light my-2 my-sm-0" type="submit">Login</button></a>
-			</li>
-
-			<li class="nav-item">
-			  <a class="nav-link" href="#"><button class="btn btn-light my-2 my-sm-0">Make An Account</button></a>
-			</li>
-
-		  </ul> -->
-		</div>
-
-	</nav>
+	<?php include "header.php"; ?>
 	<div class='jumbotron bg-light'>
 		<div class='row'>
 			<div class='col-sm-6'>
 				<h1 class="display-1">Welcome Back!</h1>
 				<form action="/operations/login.php" method="post">
+
 					<div class="form-group">
 					  <label for="email">Email</label>
 					  <input type="text" name="email" id="email" class="form-control" placeholder="Email" aria-describedby="helpId">
@@ -53,6 +39,7 @@
 						<input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="helpId">
 					</div>
 					<button type="submit" class="btn btn-primary">Login</button>
+					
 				</form>
 
 			</div>
@@ -77,7 +64,6 @@
 					</div>
 					<button type="submit" class="btn btn-primary">Register</button>
 				</form>
-
 			</div>
 		</div>
 	</div>

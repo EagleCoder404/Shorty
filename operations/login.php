@@ -4,7 +4,6 @@ include "redirect.php";
 include "user_exists.php";
 
 session_start();
-$_SESSION['status'] = false;
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -18,10 +17,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         $account = pg_fetch_row(pg_query($con,"select password,firstname from accounts where email='$email';"));
         if(password_verify($password,$account[0]))
         {
-            redirect('/home');
             $_SESSION['email'] = $email;            
             $_SESSION['status'] = true;
             $_SESSION['firstname'] = $account[1];
+            redirect('/home');
         }        
         else
             redirect("/");
