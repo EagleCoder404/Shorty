@@ -74,7 +74,10 @@ while($row = pg_fetch_assoc($rows))
 				<tbody>
 					<?php for ($i=0; $i < $size ; $i++) { ?>
 					<tr>
-						<td scope="row"><?= $links[$i]['short_url'] ?></td>
+						<td scope="row">
+							<button class='btn btn-sm btn-primary' onclick=copyStringToClipboard("<?=$links[$i]['short_url']?>")>copy</button>
+							<?= $links[$i]['short_url']?>
+						</td>
 						<td><?= $links[$i]['original_url'] ?></td>
 						<td><?= $links[$i]['use_count'] ?></td>
 					</tr>
@@ -83,6 +86,25 @@ while($row = pg_fetch_assoc($rows))
 			</table>
 		</div>
 	</div>
-	
+<script>
+
+function copyStringToClipboard (str) {
+   // Create new element
+   var el = document.createElement('textarea');
+   // Set value (string to be copied)
+   el.value = str;
+   // Set non-editable to avoid focus and move outside of view
+   el.setAttribute('readonly', '');
+   el.style = {position: 'absolute', left: '-9999px'};
+   document.body.appendChild(el);
+   // Select text inside element
+   el.select();
+   // Copy text to clipboard
+   document.execCommand('copy');
+   // Remove temporary element
+   document.body.removeChild(el);
+}
+
+</script>
 </body>
 </html>
