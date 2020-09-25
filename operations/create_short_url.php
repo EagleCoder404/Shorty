@@ -1,7 +1,8 @@
 <?php
 include "redirect.php";
 
-function generateRandomString($length = 10) {
+function generateRandomString($length = 10) 		//generates random string of length specified
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -12,7 +13,7 @@ function generateRandomString($length = 10) {
 }
 
 session_start();
-$host = $_SERVER['HTTP_HOST'];
+$host = $_SERVER['HTTP_HOST'];		//get domain name example: "shorty"
 $email = $_SESSION['email'];
 $con = pg_connect("host=localhost dbname=url_shortner user=url_shortner password=root");
 $su = $_POST['original_url'];

@@ -32,24 +32,25 @@ while($row = pg_fetch_assoc($rows))
 		*{
 			font-family: 'roboto slab';
 		}
+
 	</style>
 </head>
-<body class=''>
+<body class='bg-warning'>
 	<?php include "../header.php";?>
 
-	<div class="container mt-3 p-sm-3">
-		<div class="container-fluid">
+	<div class="container mt-3 p-0 p-sm-3 bg-white rounded-lg">
+		<div class="container-fluid p-0 p-sm-2">
 			<button class="btn btn-outline-primary rounded-0 btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
 				Make A URL
 			</button>
 			<div class="collapse border border-primary border-top-0" id="collapseExample">
 				
-				<form action="../operations/create_short_url.php" method='post' class='p-3'>
+				<form action="../operations/create_short_url.php" method='post' class='p-0 p-sm-3'>
 					<div class="row">
-	
+
 						<div class="col-lg-10">
 							<div class="form-group">
-							  <input type="text" class="form-control" name="original_url" id="original_url" aria-describedby="helpId" placeholder="Your URL">
+							  <input type="url" class="form-control" name="original_url" id="original_url" aria-describedby="helpId" placeholder="Your URL">
 							</div>
 						</div>
 	
@@ -62,28 +63,30 @@ while($row = pg_fetch_assoc($rows))
 	
 			</div>
 		</div>
-		<div class="mt-3 container-fluid">
-			<table class="table">
-				<thead class='thead-dark'>
-					<tr>
-						<th>Shorty URL</th>
-						<th>Original URL</th>
-						<th>Open Count</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php for ($i=0; $i < $size ; $i++) { ?>
-					<tr>
-						<td scope="row">
-							<button class='btn btn-sm btn-primary' onclick=copyStringToClipboard("<?=$links[$i]['short_url']?>")>copy</button>
-							<?= $links[$i]['short_url']?>
-						</td>
-						<td><?= $links[$i]['original_url'] ?></td>
-						<td><?= $links[$i]['use_count'] ?></td>
-					</tr>
-					<?php } ?>
-				</tbody>
-			</table>
+		<div class="mt-3 container-fluid p-0 p-md-2">
+			<div class='table-responsive-sm'>
+				<table class="table">
+					<thead class='thead-dark'>
+						<tr>
+							<th>Shorty URL</th>
+							<th>Original URL</th>
+							<th>Open Count</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php for ($i=0; $i < $size ; $i++) { ?>
+						<tr>
+							<td scope="row">
+								<button class='btn btn-sm btn-primary' onclick=copyStringToClipboard("<?=$links[$i]['short_url']?>")>copy</button>
+								<?= $links[$i]['short_url']?>
+							</td>
+							<td style="text-overflow: ellipsis;white-space:nowrap"><?= $links[$i]['original_url'] ?></td>
+							<td><?= $links[$i]['use_count'] ?></td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 <script>

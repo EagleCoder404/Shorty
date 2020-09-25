@@ -7,7 +7,7 @@ if($code !== NULL)
 {
 	$code = htmlspecialchars($code);
 	$n = get_url($code);
-	redirect("http://".$n);
+	redirect($n);
 }
 
 session_start();
@@ -33,9 +33,9 @@ if(isset($_SESSION['status']))
 		}
 	</style>
 </head>
-<body>
+<body class='bg-warning'>
 	<?php include "header.php"; ?>
-	<div class='jumbotron bg-light'>
+	<div class='jumbotron bg-light m-sm-3'>
 		<div class='row'>
 			<div class='col-sm-6'>
 				<h1 class="display-1">Welcome Back!</h1>
