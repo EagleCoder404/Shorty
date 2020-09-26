@@ -2,12 +2,12 @@
 
 include "redirect.php";
 include "user_exists.php";
-
+include_once "get_con.php";
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    $con = pg_connect("host=localhost dbname=url_shortner user=url_shortner password=root");   
+    $con = get_con();   
 
     $email = $_POST['email'];
     $password = $_POST['password'];

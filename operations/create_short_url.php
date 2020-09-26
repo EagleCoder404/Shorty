@@ -1,6 +1,6 @@
 <?php
 include "redirect.php";
-
+include_once "get_con.php";
 function generateRandomString($length = 10) 		//generates random string of length specified
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -15,14 +15,17 @@ function generateRandomString($length = 10) 		//generates random string of lengt
 session_start();
 $host = $_SERVER['HTTP_HOST'];		//get domain name example: "shorty"
 $email = $_SESSION['email'];
-$con = pg_connect("host=localhost dbname=url_shortner user=url_shortner password=root");
 $su = $_POST['original_url'];
 $rand_code = generateRandomString();
 
+$con = get_con();
+
 $short_url = "http://".$host."/?".$rand_code;
+
 $query =<<<EOD
 insert into url_map values('$short_url','$su','$email',0);
 EOD;
+
 pg_query($con,$query);
 redirect("/home");
 

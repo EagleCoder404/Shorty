@@ -1,9 +1,9 @@
 <?php
-
+include_once "get_con.php";
 function get_url($code){
 
     $host = $_SERVER['HTTP_HOST'];
-    $con = pg_connect("host=localhost dbname=url_shortner user=url_shortner password=root");
+    $con = get_con();
 
     $short_url =  "http://".$host."/?".$code; 
 

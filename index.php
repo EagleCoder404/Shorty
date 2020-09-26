@@ -1,6 +1,7 @@
 <?php
 include "operations/redirect.php";
 include "operations/get_original.php";
+include "operations/flash_alerts.php";
 
 $code=array_key_first($_GET);
 if($code !== NULL)
@@ -79,8 +80,7 @@ if(isset($_SESSION['status']))
 
 		</div>
 	</div>
-	<script>
-		
-	</script>
 </body>
-</html>
+</html>	<script>
+		
+		</script>
