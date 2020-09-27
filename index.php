@@ -38,8 +38,8 @@ if(isset($_SESSION['status']))
 	<?php include "header.php"; ?>
 	<div class='jumbotron bg-light m-sm-3'>
 		<div class='row'>
-			<div class='col-sm-6'>
-				<h1 class="display-1">Welcome Back!</h1>
+			<div class='col-lg-6'>
+				<h1 class="display-4">Welcome Back!</h1>
 				<form action="/operations/login.php" method="post">
 
 					<div class="form-group">
@@ -55,8 +55,8 @@ if(isset($_SESSION['status']))
 				</form>
 			</div>
 
-			<div class='col-sm-6'>
-				<h1 class="display-1">Hello There!</h1>
+			<div class='col-lg-6'>
+				<h1 class="display-4">Hello There!</h1>
 				<form action="operations/register.php" method="post">
 					<div class="form-group">
 					  <label for="firstname">First Name</label>
