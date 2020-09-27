@@ -37,7 +37,7 @@ while($row = pg_fetch_assoc($rows))
 
 	</style>
 </head>
-<body class='bg-warning'>
+<body style=" background: linear-gradient(to right, #1f1c2c, #928dab);">
 	<?php include "../header.php";?>
 
 	<div class="container mt-3 p-0 p-sm-3 bg-white rounded-lg">

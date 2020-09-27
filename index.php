@@ -34,7 +34,7 @@ if(isset($_SESSION['status']))
 		}
 	</style>
 </head>
-<body class='bg-warning'>
+<body  style="background: linear-gradient(to right, #1f1c2c, #928dab);">
 	<?php include "header.php"; ?>
 	<div class='jumbotron bg-light m-sm-3'>
 		<div class='row'>
